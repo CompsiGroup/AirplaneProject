@@ -1,11 +1,14 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.function.DoubleToIntFunction;
+import java.util.stream.Stream;
+
 
 public class Airplane {
     private Seat[][] FirstClassSeating = new Seat[5][4];
     private Seat[][] EconomyClassSeating = new Seat[35][6];
+
+    private Seat[][] AllSeats;
 
     public Airplane()
     {
@@ -27,10 +30,44 @@ public class Airplane {
             EconomyClassSeating[j][5] = new Seat( false, "window");
 
         }
+
+
     }
 
-    public void printSeatingLayout()
+    public Seat[][] getEconomyClassSeating()
     {
-        System.out.println(Arrays.deepToString(FirstClassSeating));
+        return EconomyClassSeating;
+    }
+
+    public Seat[][] getFirstClassSeating()
+    {
+        return FirstClassSeating;
+    }
+
+    public Seat getSeat(int row, int column)
+    {
+        row-=1;
+        column-=1;
+        if (row >= 5)
+        {
+            row -=5;
+
+            return EconomyClassSeating[row][column];
+        }
+        return FirstClassSeating[row][column];
+    }
+
+    public String getSeatingLayout()
+    {
+        String layout = "";
+        for (int i = 0; i<FirstClassSeating.length; i++)
+        {
+            layout += "   "+Arrays.deepToString(FirstClassSeating[i]) +"\n";
+        }
+        for (int i = 0; i<EconomyClassSeating.length; i++)
+        {
+            layout += Arrays.deepToString(EconomyClassSeating[i]) +"\n";
+        }
+        return layout;
     }
 }

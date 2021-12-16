@@ -22,9 +22,22 @@ public class Seat
     @Override
     public String toString()
     {
-        return "Seat{" +
-                "isOccupied=" + isOccupied +
-                ", seatType='" + seatType + '\'' +
-                '}';
+        if (isOccupied)
+        {
+            return "X";
+        }
+        if (seatType.equalsIgnoreCase("window"))
+        {
+            return "W";
+        }
+        else if (seatType.equalsIgnoreCase("aisle"))
+        {
+            return "A";
+        }
+        else if (seatType.equalsIgnoreCase("middle"))
+        {
+            return "M";
+        }
+        return "O";
     }
 }
