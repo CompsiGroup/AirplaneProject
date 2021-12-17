@@ -56,11 +56,11 @@ public class Airplane {
     public String getSeatingLayout()
     {
         String layout = "    1  2  3  4  5  6\n";
-        for (int i = 0; i<FirstClassSeating.length; i++)
+        for (int i = 0; i < FirstClassSeating.length; i++)
         {
             if (i+1<10)
             {
-                layout += i+1+"     "+Arrays.deepToString(FirstClassSeating[i]) +"\n";
+                layout += i + 1 + "     " + Arrays.deepToString(FirstClassSeating[i]) +"\n";
             }
             else
             {
@@ -75,7 +75,7 @@ public class Airplane {
             }
             else
             {
-                layout += i + 1 +" "+ Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+                layout += i + 1 + " " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
             }
         }
         return layout;
