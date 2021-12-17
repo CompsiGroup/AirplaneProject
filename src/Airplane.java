@@ -58,7 +58,7 @@ public class Airplane {
         String layout = "    1  2  3  4  5  6\n";
         for (int i = 0; i < FirstClassSeating.length; i++)
         {
-            if (i+1<10)
+            if (i + 1 < 10)
             {
                 layout += i + 1 + "     " + Arrays.deepToString(FirstClassSeating[i]) +"\n";
             }
