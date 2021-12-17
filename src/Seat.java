@@ -43,11 +43,11 @@ public class Seat
         {
             return "W";
         }
-        else if (seatType == AISLE)
+        if (seatType == AISLE)
         {
             return "A";
         }
-        else if (seatType == MIDDLE)
+        if (seatType == MIDDLE)
         {
             return "M";
         }
