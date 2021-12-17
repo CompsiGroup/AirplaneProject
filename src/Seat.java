@@ -23,6 +23,11 @@ public class Seat
         return isOccupied;
     }
 
+    public void occupy()
+    {
+        isOccupied = true;
+    }
+
     public String toString()
     {
         if (isOccupied)

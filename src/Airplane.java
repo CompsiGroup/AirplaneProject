@@ -10,20 +10,20 @@ public class Airplane {
     {
         for (int i = 0 ; i<5; i++)
         {
-            FirstClassSeating[i][0] = new Seat(false, "window");
-            FirstClassSeating[i][1] = new Seat(false, "aisle");
-            FirstClassSeating[i][2] = new Seat( false, "aisle");
-            FirstClassSeating[i][3] = new Seat(false, "window");
+            FirstClassSeating[i][0] = new Seat(false, Seat.WINDOW);
+            FirstClassSeating[i][1] = new Seat(false, Seat.AISLE);
+            FirstClassSeating[i][2] = new Seat( false, Seat.AISLE);
+            FirstClassSeating[i][3] = new Seat(false, Seat.WINDOW);
         }
 
         for (int j = 0; j<35; j++)
         {
-            EconomyClassSeating[j][0] = new Seat(false, "window");
-            EconomyClassSeating[j][1] = new Seat(false, "middle");
-            EconomyClassSeating[j][2] = new Seat( false, "aisle");
-            EconomyClassSeating[j][3] = new Seat(false, "aisle");
-            EconomyClassSeating[j][4] = new Seat(false, "middle");
-            EconomyClassSeating[j][5] = new Seat( false, "window");
+            EconomyClassSeating[j][0] = new Seat(false, Seat.WINDOW);
+            EconomyClassSeating[j][1] = new Seat(false, Seat.MIDDLE);
+            EconomyClassSeating[j][2] = new Seat( false, Seat.AISLE);
+            EconomyClassSeating[j][3] = new Seat(false, Seat.AISLE);
+            EconomyClassSeating[j][4] = new Seat(false, Seat.MIDDLE);
+            EconomyClassSeating[j][5] = new Seat( false, Seat.WINDOW);
 
         }
 
