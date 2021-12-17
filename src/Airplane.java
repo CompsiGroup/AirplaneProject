@@ -8,7 +8,7 @@ public class Airplane {
 
     public Airplane()
     {
-        for (int i = 0 ; i<5; i++)
+        for (int i = 0 ; i < 5; i++)
         {
             FirstClassSeating[i][0] = new Seat(false, Seat.WINDOW);
             FirstClassSeating[i][1] = new Seat(false, Seat.AISLE);
@@ -16,7 +16,7 @@ public class Airplane {
             FirstClassSeating[i][3] = new Seat(false, Seat.WINDOW);
         }
 
-        for (int j = 0; j<35; j++)
+        for (int j = 0; j < 35; j++)
         {
             EconomyClassSeating[j][0] = new Seat(false, Seat.WINDOW);
             EconomyClassSeating[j][1] = new Seat(false, Seat.MIDDLE);
