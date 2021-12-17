@@ -7,6 +7,11 @@ public class Seat
     public static final byte AISLE = 1;
     public static final byte MIDDLE = 2;
 
+    /*
+     * Creates a new seat that is or is not occupied and has a seat type.
+     * @param isOccupied true if seat is occupied, false if it is not
+     * @param seatType this seat's type - window, middle or aisle.
+     */
     public Seat(boolean isOccupied, byte seatType)
     {
         this.isOccupied = isOccupied;
