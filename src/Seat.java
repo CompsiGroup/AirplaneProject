@@ -3,10 +3,10 @@ public class Seat
     private boolean isOccupied;
     private String seatType;
 
-    public Seat(boolean isOccupiedd, String seat)
+    public Seat(boolean isOccupied, String seatType)
     {
-        isOccupied = isOccupiedd;
-        seatType = seat;
+        this.isOccupied = isOccupied;
+        this.seatType = seatType;
     }
 
     public String getSeatType()
@@ -14,17 +14,11 @@ public class Seat
         return seatType;
     }
 
-    public boolean getIsOccupied()
+    public boolean isOccupied()
     {
         return isOccupied;
     }
 
-    public void occupy()
-    {
-        isOccupied = true;
-    }
-
-    @Override
     public String toString()
     {
         if (isOccupied)
