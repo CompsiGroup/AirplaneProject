@@ -14,7 +14,7 @@ public class UserInterface
     /*
     *Prints seating information
     */
-    public coid showSeating()
+    public void showSeating()
     {
         
     }
