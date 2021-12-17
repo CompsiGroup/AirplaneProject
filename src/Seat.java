@@ -9,6 +9,7 @@ public class Seat
         this.seatType = seatType;
     }
 
+
     public String getSeatType()
     {
         return seatType;
@@ -17,6 +18,11 @@ public class Seat
     public boolean isOccupied()
     {
         return isOccupied;
+    }
+
+    public void occupy()
+    {
+        isOccupied = true;
     }
 
     public String toString()

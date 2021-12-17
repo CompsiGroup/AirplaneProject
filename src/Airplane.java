@@ -1,8 +1,4 @@
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.function.DoubleToIntFunction;
-import java.util.stream.Stream;
-
 
 public class Airplane {
     private Seat[][] FirstClassSeating = new Seat[5][4];
