@@ -59,14 +59,29 @@ public class Airplane {
 
     public String getSeatingLayout()
     {
+        System.out.println("    " + "1  2  3  4  5  6 ");
         String layout = "";
         for (int i = 0; i<FirstClassSeating.length; i++)
         {
-            layout += "   "+Arrays.deepToString(FirstClassSeating[i]) +"\n";
+            if (i+1<10)
+            {
+                layout += i+1+"     "+Arrays.deepToString(FirstClassSeating[i]) +"\n";
+            }
+            else
+            {
+                layout += i + 1 + "    " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
+            }
         }
         for (int i = 0; i<EconomyClassSeating.length; i++)
         {
-            layout += Arrays.deepToString(EconomyClassSeating[i]) +"\n";
+            if (i+1<10)
+            {
+                layout += i + 1 + "  " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+            }
+            else
+            {
+                layout += i + 1 +" "+ Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+            }
         }
         return layout;
     }

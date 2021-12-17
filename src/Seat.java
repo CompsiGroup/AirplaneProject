@@ -19,6 +19,11 @@ public class Seat
         return isOccupied;
     }
 
+    public void occupy()
+    {
+        isOccupied = true;
+    }
+
     @Override
     public String toString()
     {
