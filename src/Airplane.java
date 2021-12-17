@@ -55,8 +55,7 @@ public class Airplane {
 
     public String getSeatingLayout()
     {
-        System.out.println("    " + "1  2  3  4  5  6 ");
-        String layout = "";
+        String layout = "    1  2  3  4  5  6\n";
         for (int i = 0; i<FirstClassSeating.length; i++)
         {
             if (i+1<10)
