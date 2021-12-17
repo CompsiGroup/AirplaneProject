@@ -1,16 +1,19 @@
 public class Seat
 {
     private boolean isOccupied;
-    private String seatType;
+    private byte seatType;
+    
+    public static final byte WINDOW = 0;
+    public static final byte AISLE = 1;
+    public static final byte MIDDLE = 2;
 
-    public Seat(boolean isOccupied, String seatType)
+    public Seat(boolean isOccupied, byte seatType)
     {
         this.isOccupied = isOccupied;
         this.seatType = seatType;
     }
 
-
-    public String getSeatType()
+    public byte getSeatType()
     {
         return seatType;
     }
@@ -20,26 +23,21 @@ public class Seat
         return isOccupied;
     }
 
-    public void occupy()
-    {
-        isOccupied = true;
-    }
-
     public String toString()
     {
         if (isOccupied)
         {
             return "X";
         }
-        if (seatType.equalsIgnoreCase("window"))
+        if (seatType == WINDOW)
         {
             return "W";
         }
-        else if (seatType.equalsIgnoreCase("aisle"))
+        else if (seatType == AISLE)
         {
             return "A";
         }
-        else if (seatType.equalsIgnoreCase("middle"))
+        else if (seatType == MIDDLE)
         {
             return "M";
         }
