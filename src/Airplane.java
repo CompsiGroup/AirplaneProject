@@ -67,9 +67,9 @@ public class Airplane {
                 layout += i + 1 + "    " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
             }
         }
-        for (int i = 0; i<EconomyClassSeating.length; i++)
+        for (int i = 0; i < EconomyClassSeating.length; i++)
         {
-            if (i+1<10)
+            if (i + 1 < 10)
             {
                 layout += i + 1 + "  " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
             }
