@@ -6,11 +6,24 @@ public class tester
     {
         System.out.println("hi");
         Airplane plane = new Airplane();
+        UserInterface ui = new UserInterface(plane);
+
+        int amountOfPeople = ui.askForAmountOfPeople();
+        System.out.println(plane.getAvailableSeats(Airplane.ALLSEATS));
+        for (int i = 0; i < amountOfPeople; i++)
+        {
+            if (plane.hasAvailableSeat(Airplane.ALLSEATS)) {
+                System.out.println("works");
+                byte requestedSeating = ui.askForClass();
+                if (plane.hasAvailableSeat(requestedSeating)) {
+                    Seat chosenSeat = ui.askForSeat(requestedSeating);
+                    chosenSeat.occupy();
+                } else {
+                    ui.displayClassFull(requestedSeating);
+                }
+            }
+        }
         System.out.println(plane.getSeatingLayout(Airplane.FIRSTCLASS));
-        Seat sixFive = plane.getSeat(3, 4, Airplane.FIRSTCLASS);
-        System.out.println(sixFive);
-        sixFive.occupy();
-        System.out.println(sixFive);
-        System.out.println(plane.getSeatingLayout(Airplane.FIRSTCLASS));
+        System.out.println("done");
     }
 }

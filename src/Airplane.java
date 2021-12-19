@@ -28,8 +28,6 @@ public class Airplane {
             EconomyClassSeating[j][5] = new Seat( false, Seat.WINDOW);
 
         }
-
-
     }
 
     public Seat[][] getEconomyClassSeating()
@@ -42,6 +40,77 @@ public class Airplane {
         return FirstClassSeating;
     }
 
+
+    public int getAvailableSeats(byte seating)
+    {
+        int count = 0;
+        if (seating == FIRSTCLASS)
+        {
+            for (Seat[] seats : FirstClassSeating)
+            {
+                for (Seat seat : seats)
+                {
+                    if (!seat.isOccupied())
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+        else if (seating == ECONOMYCLASS)
+        {
+            for (Seat[] seats : EconomyClassSeating)
+            {
+                for (Seat seat : seats)
+                {
+                    if (!seat.isOccupied())
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+        else
+        {
+            count = getAvailableSeats(ECONOMYCLASS) + getAvailableSeats(FIRSTCLASS);
+        }
+        return count;
+    }
+
+    public boolean hasAvailableSeat(byte seating)
+    {
+        if (seating == FIRSTCLASS)
+        {
+            for (Seat[] seats : FirstClassSeating)
+            {
+                for (Seat seat : seats)
+                {
+                    if (!seat.isOccupied())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        else if (seating == ECONOMYCLASS)
+        {
+            for (Seat[] seats : EconomyClassSeating)
+            {
+                for (Seat seat : seats)
+                {
+                    if (!seat.isOccupied())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            return hasAvailableSeat(Airplane.FIRSTCLASS) || hasAvailableSeat(Airplane.ECONOMYCLASS);
+        }
+        return true;
+    }
 
     public Seat getSeat(int row, int column, byte seat)
     {
@@ -65,40 +134,6 @@ public class Airplane {
         {
             return EconomyClassSeating[row][column];
         }
-    }
-
-    public String getFirstClassLayout()
-    {
-        String layout = "    0  1  2  3  4   \n";
-        for (int i = 0; i < FirstClassSeating.length; i++)
-        {
-            if (i + 1 < 10)
-            {
-                layout += i + 1 + "     " + Arrays.deepToString(FirstClassSeating[i]) +"\n";
-            }
-            else
-            {
-                layout += i + 1 + "    " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
-            }
-        }
-        return layout;
-    }
-
-    public String getEconomyClassLayout()
-    {
-        String layout = "    1  2  3  4  5  6\n";
-        for (int i = 0; i < EconomyClassSeating.length; i++)
-        {
-            if (i + 1 < 10)
-            {
-                layout += i + 1 + "  " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
-            }
-            else
-            {
-                layout += i + 1 + " " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
-            }
-        }
-        return layout;
     }
 
     public String getSeatingLayout(byte seatSelection)
