@@ -25,7 +25,7 @@ public class Seat
 
     /*
      * Gets the seat type
-     * @return seatType, returns the type of seat
+     * @return seatType, the type of seat
      */
     public byte getSeatType()
     {
@@ -34,7 +34,7 @@ public class Seat
 
     /*
      * Checks if the seat is occupied
-     * @return isOccupied, returns if the seat is occupied
+     * @return isOccupied, if the seat is occupied
      */
     public boolean isOccupied()
     {
