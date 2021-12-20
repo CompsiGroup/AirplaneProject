@@ -1,9 +1,5 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.Map;
 
 public class UserInterface
 {
@@ -66,6 +62,10 @@ public class UserInterface
         }
         catch (Exception e)
         {
+            if (input == null)
+            {
+                return -1;
+            }
             JOptionPane.showMessageDialog(null,
                     "Input an integer please.");
             return askForAmountOfPeople();

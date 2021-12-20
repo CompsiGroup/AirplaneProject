@@ -10,20 +10,26 @@ public class tester
 
         int amountOfPeople = ui.askForAmountOfPeople();
         System.out.println(plane.getAvailableSeats(Airplane.ALLSEATS));
-        for (int i = 0; i < amountOfPeople; i++)
-        {
-            if (plane.hasAvailableSeat(Airplane.ALLSEATS)) {
-                System.out.println("works");
-                byte requestedSeating = ui.askForClass();
-                if (plane.hasAvailableSeat(requestedSeating)) {
-                    Seat chosenSeat = ui.askForSeat(requestedSeating);
-                    chosenSeat.occupy();
-                } else {
-                    ui.displayClassFull(requestedSeating);
+        try {
+            if (amountOfPeople != -1) {
+                for (int i = 0; i < amountOfPeople; i++) {
+                    if (plane.hasAvailableSeat(Airplane.ALLSEATS)) {
+                        System.out.println("works");
+                        byte requestedSeating = ui.askForClass();
+                        if (plane.hasAvailableSeat(requestedSeating)) {
+                            Seat chosenSeat = ui.askForSeat(requestedSeating);
+                            chosenSeat.occupy();
+                        } else {
+                            ui.displayClassFull(requestedSeating);
+                        }
+                    }
                 }
             }
         }
-        System.out.println(plane.getSeatingLayout(Airplane.FIRSTCLASS));
+        catch (Exception e)
+        {
+            System.out.println("canceled");
+        }
         System.out.println("done");
     }
 }
