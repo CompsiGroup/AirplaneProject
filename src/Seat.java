@@ -42,7 +42,8 @@ public class Seat
     }
 
     /*
-     *
+     * Sets the seat to occupied
+     * @return occupy, The seat is set to occupied
      */
     public void occupy()
     {
