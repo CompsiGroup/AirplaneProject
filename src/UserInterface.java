@@ -14,15 +14,15 @@ public class UserInterface
     {
         String input = JOptionPane.showInputDialog(thisplane.getSeatingLayout(seating));
         input = input.strip();
-        if (!input.matches("\\d+\\s\\d+"))
+        if (!input.matches("\\w\\d"))
         {
             JOptionPane.showMessageDialog(null,
-                    "Invalid input. Make sure to input <row> <column>");
+                    "Invalid input. Make sure to input <letter><row>");
             return askForSeat(seating);
         }
         int spaceIndex = input.indexOf("\s");
-        int row = Integer.parseInt(input.substring(0, spaceIndex));
-        int column = Integer.parseInt(input.substring(spaceIndex+1));
+        int row = Integer.parseInt(input.substring(1));
+        String column = input.substring(0,1);
         try
         {
             Seat chosenSeat = thisplane.getSeat(row, column, seating);
@@ -33,11 +33,12 @@ public class UserInterface
                 return  askForSeat(seating);
             }
             JOptionPane.showMessageDialog(null,
-                    "success. You have chosen seat "+row+" "+column);
+                    "success. You have chosen seat "+column+row);
             return chosenSeat;
         }
         catch (Exception e)
         {
+            System.out.println(e);
             JOptionPane.showMessageDialog(null,
                     "Invalid seat. make sure to input numbers within the constraints of the seating arrangement");
             return askForSeat(seating);

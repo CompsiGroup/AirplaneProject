@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class tester
 {
     public static void main(String[] args)
@@ -10,7 +8,8 @@ public class tester
 
         int amountOfPeople = ui.askForAmountOfPeople();
         System.out.println(plane.getAvailableSeats(Airplane.ALLSEATS));
-        try {
+        try
+        {
             if (amountOfPeople != -1) {
                 for (int i = 0; i < amountOfPeople; i++) {
                     if (plane.hasAvailableSeat(Airplane.ALLSEATS)) {
@@ -30,6 +29,7 @@ public class tester
         {
             System.out.println("canceled");
         }
+        System.out.println(plane.getSeatingLayout(Airplane.ALLSEATS));
         System.out.println("done");
     }
 }

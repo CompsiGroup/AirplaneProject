@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 /*
 *Makes an Airplane with first class and economy seating
@@ -117,9 +118,19 @@ public class Airplane {
         return true;
     }
 
-    public Seat getSeat(int row, int column, byte seat)
+    public Seat getSeat(int row, String colum, byte seat)
     {
+
         assert seat == ALLSEATS || seat == FIRSTCLASS || seat == ECONOMYCLASS;
+        HashMap<String, Integer> letterToInt = new HashMap<String, Integer>();
+        String[] letters = new String[]{"A","B","C","D","E","F"};
+        int[] col = new int[]{1,2,3,4,5,6};
+        for (int i = 0; i<letters.length;i++)
+        {
+            letterToInt.put(letters[i], col[i]);
+        }
+
+        int column = letterToInt.get(colum);
         row -= 1;
         column -= 1;
         if (seat == ALLSEATS)
@@ -146,7 +157,7 @@ public class Airplane {
         assert  seatSelection == ALLSEATS || seatSelection == ECONOMYCLASS || seatSelection == FIRSTCLASS;
         if (seatSelection == ALLSEATS)
         {
-            String layout = "    1  2  3  4  5  6\n";
+            String layout = "    A  B  C  D  E  F\n";
             for (int i = 0; i < FirstClassSeating.length; i++) {
                 if (i + 1 < 10) {
                     layout += i + 1 + "     " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
@@ -165,12 +176,12 @@ public class Airplane {
         }
         else if (seatSelection == ECONOMYCLASS)
         {
-            String layout = "    1  2  3  4  5  6\n";
+            String layout = "     A    B   C   D   E   F\n";
             for (int i = 0; i < EconomyClassSeating.length; i++)
             {
                 if (i + 1 < 10)
                 {
-                    layout += i + 1 + "  " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+                    layout += i + 1 + "   " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
                 }
                 else
                 {
@@ -181,7 +192,7 @@ public class Airplane {
         }
         else
         {
-            String layout = "    0  1  2  3  4   \n";
+            String layout = "        A   B   C   D   \n";
             for (int i = 0; i < FirstClassSeating.length; i++)
             {
                 if (i + 1 < 10)
