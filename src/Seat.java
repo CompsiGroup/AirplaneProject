@@ -32,6 +32,10 @@ public class Seat
         return seatType;
     }
 
+    /*
+     * Checks if the seat is occupied
+     * @return isOccupied, returns if the seat is occupied
+     */
     public boolean isOccupied()
     {
         return isOccupied;
