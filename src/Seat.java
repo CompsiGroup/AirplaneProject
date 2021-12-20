@@ -24,7 +24,8 @@ public class Seat
     }
 
     /*
-     *
+     * Gets the seat type
+     * @return seatType, returns the type of seat
      */
     public byte getSeatType()
     {
