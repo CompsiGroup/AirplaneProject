@@ -120,6 +120,12 @@ public class Airplane {
         return true;
     }
 
+    /*
+     * Gets the seat row, column and if it is economy or first class
+     * @param row The seat's row
+     * @param column The seat's column
+     * @param seat The seat's type, first class or economy
+     */
     public Seat getSeat(int row, int column, byte seat)
     {
         assert seat == ALLSEATS || seat == FIRSTCLASS || seat == ECONOMYCLASS;
