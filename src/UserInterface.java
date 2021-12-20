@@ -51,7 +51,7 @@ public class UserInterface
     public int askForAmountOfPeople()
     {
         String input = JOptionPane.showInputDialog(
-                thisplane.getSeatingLayout(Airplane.ALLSEATS)
+                "Welcome to the plane\n"
                 +" how many people would you like to get seats for?");
         try
         {
