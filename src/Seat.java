@@ -1,8 +1,8 @@
 /*
-* Has the different seats on an airplane and can check if it is occupied
-*@author Gene
-*@version 12.20.2021
-*/
+ * Has the different seats on an airplane and can check if it is occupied
+ * @author Gene
+ * @version 12.20.2021
+ */
 public class Seat
 {
     private boolean isOccupied;
@@ -23,6 +23,9 @@ public class Seat
         this.seatType = seatType;
     }
 
+    /*
+     *
+     */
     public byte getSeatType()
     {
         return seatType;
