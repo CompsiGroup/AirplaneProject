@@ -41,6 +41,9 @@ public class Seat
         return isOccupied;
     }
 
+    /*
+     *
+     */
     public void occupy()
     {
         isOccupied = true;
