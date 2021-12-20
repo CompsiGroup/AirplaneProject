@@ -46,6 +46,10 @@ public class Seat
         isOccupied = true;
     }
 
+    /*
+     * Overrides toString to return if a seat is occupied and the type of seat it is.
+     * @return The seat type and if it is occupied 
+     */
     public String toString()
     {
         if (isOccupied)
