@@ -24,23 +24,36 @@ public class Seat
     }
 
     /*
-     *
+     * Gets the seat type
+     * @return seatType, the type of seat
      */
     public byte getSeatType()
     {
         return seatType;
     }
 
+    /*
+     * Checks if the seat is occupied
+     * @return isOccupied, if the seat is occupied
+     */
     public boolean isOccupied()
     {
         return isOccupied;
     }
 
+    /*
+     * Sets the seat to occupied
+     * @return occupy, The seat is set to occupied
+     */
     public void occupy()
     {
         isOccupied = true;
     }
 
+    /*
+     * Overrides toString to return if a seat is occupied and the type of seat it is.
+     * @return The seat type and if it is occupied
+     */
     public String toString()
     {
         if (isOccupied)
