@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/*
+*Makes an Airplane with first class and economy seating
+*/
 public class Airplane {
     private Seat[][] FirstClassSeating = new Seat[5][4];
     private Seat[][] EconomyClassSeating = new Seat[35][6];
