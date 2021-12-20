@@ -1,5 +1,10 @@
 import java.util.Arrays;
 
+/*
+ * Will test the Airplane, Seat and UserInterface classes
+ * @author Gene, Aidan
+ * @version 12.20.2021
+ */
 public class tester
 {
     public static void main(String[] args)
