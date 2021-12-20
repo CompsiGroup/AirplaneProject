@@ -13,6 +13,9 @@ public class Airplane {
     public static byte FIRSTCLASS=1;
     public static byte ECONOMYCLASS=2;
 
+    /*
+     * Makes an airplane with economy and first class seating that has different types of seats
+     */
     public Airplane()
     {
         for (int i = 0 ; i < 5; i++)
