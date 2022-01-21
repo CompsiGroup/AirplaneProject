@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 /*
 *Makes an Airplane with first class and economy seating
-*@author Gene
+*@author Gene, Dakota, Aidan
 *@version 12.20.2021
 */
 public class Airplane {
@@ -11,8 +11,10 @@ public class Airplane {
     private Seat[][] EconomyClassSeating = new Seat[35][6];
 
     public static byte ALLSEATS = 0;
-    public static byte FIRSTCLASS=1;
-    public static byte ECONOMYCLASS=2;
+    public static byte FIRSTCLASS = 1;
+    public static byte ECONOMYCLASS = 2;
+    private String economyClassFile;
+    private String firstClassFile;
 
     public Airplane()
     {
@@ -34,19 +36,77 @@ public class Airplane {
             EconomyClassSeating[j][5] = new Seat( false, Seat.WINDOW);
 
         }
+        economyClassFile = "occupiedSeatsEconomy.txt";
+        firstClassFile = "occupiedSeatsFirst.txt";
+    }
+    /*
+    public void writeToFile() throws IOException {
+
+        File economyFile = new File(getEconomyClassFile());
+        FileWriter economyWriter = new FileWriter(getEconomyClassFile(), true);
+        File firstFile = new File(getFirstClassFile());
+        FileWriter firstWriter = new FileWriter(getFirstClassFile(), true);
+        for (int row = 0; row < getEconomyClassSeating().length; row ++)
+        {
+            for (int column = 0; column < getEconomyClassSeating()[0].length; column++)
+            {
+                if (getEconomyClassSeating()[row][column].isOccupied())
+                {
+                    economyWriter.write(row+ " "+column+"\n");
+                }
+            }
+        }
+        economyWriter.close();
+        for (int row = 0; row < getFirstClassSeating().length; row ++)
+        {
+            for (int column = 0; column < getFirstClassSeating()[0].length; column++)
+            {
+                if (getFirstClassSeating()[row][column].isOccupied())
+                {
+                    firstWriter.write(row+ " "+column+"\n");
+                }
+            }
+        }
+        firstWriter.close();
     }
 
-    public Seat[][] getEconomyClassSeating()
+    public void readFromFile()
     {
-        return EconomyClassSeating;
+        Scanner scEconomy = new Scanner(getEconomyClassFile());
+        Scanner scFirst = new Scanner(getFirstClassFile());
+        while (scEconomy.hasNextLine())
+        {
+            String line = scEconomy.nextLine();
+            if (!line.equalsIgnoreCase(getEconomyClassFile()))
+            {
+                int indexOfSpace = line.indexOf(" ");
+                System.out.println(line);
+                int row = Integer.parseInt(line.substring(0, indexOfSpace));
+                int column = Integer.parseInt(line.substring(indexOfSpace + 1));
+                EconomyClassSeating[row][column].occupy();
+            }
+        }
+        while (scFirst.hasNextLine())
+        {
+            String line = scFirst.nextLine();
+            System.out.println(line);
+            if (!line.equalsIgnoreCase(getFirstClassFile()))
+            {
+                int indexOfSpace = line.indexOf(" ");
+                int row = Integer.parseInt(line.substring(0, indexOfSpace));
+                int column = Integer.parseInt(line.substring(indexOfSpace + 1));
+                FirstClassSeating[row][column].occupy();
+                System.out.println("occupied "+row+" "+column);
+            }
+        }
     }
+    */
 
-    public Seat[][] getFirstClassSeating()
-    {
-        return FirstClassSeating;
-    }
-
-
+    /**
+     * Returns amount of vacant seats for the seating arrangement
+     * @param seating The seating arrangement to search in
+     * @return Amount of vacant seats
+     */
     public int getAvailableSeats(byte seating)
     {
         int count = 0;
@@ -76,53 +136,29 @@ public class Airplane {
                 }
             }
         }
-        else
+        else if (seating == ALLSEATS)
         {
             count = getAvailableSeats(ECONOMYCLASS) + getAvailableSeats(FIRSTCLASS);
         }
         return count;
     }
 
+    /**
+     * Checks if the seating arrangemet has a vacant seat.
+     * @param seating Seating arrangement to search in
+     * @return true if there is a vacant seat. false if there is not
+     */
     public boolean hasAvailableSeat(byte seating)
     {
-        if (seating == FIRSTCLASS)
-        {
-            for (Seat[] seats : FirstClassSeating)
-            {
-                for (Seat seat : seats)
-                {
-                    if (!seat.isOccupied())
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        else if (seating == ECONOMYCLASS)
-        {
-            for (Seat[] seats : EconomyClassSeating)
-            {
-                for (Seat seat : seats)
-                {
-                    if (!seat.isOccupied())
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        else
-        {
-            return hasAvailableSeat(Airplane.FIRSTCLASS) || hasAvailableSeat(Airplane.ECONOMYCLASS);
-        }
-        return true;
+        return getAvailableSeats(seating) > 0;
     }
 
-    /*
-     * Gets the seat row, column and if it is economy or first class
-     * @param row The seat's row
-     * @param column The seat's column
-     * @param seat The seat's type, first class or economy
+    /**
+     * Gets the seat at the row and column of the seating arrangment.
+     * @param row the row
+     * @param colum the column
+     * @param seat the seating arrangement. (Airplane.ALLSEATS || Airplane.ECONOMYCLASS || Airplane.FIRSTCLASS)
+     * @return the seat
      */
     public Seat getSeat(int row, String colum, byte seat)
     {
@@ -158,59 +194,66 @@ public class Airplane {
         }
     }
 
+    /**
+     * Generates a layout of the seating arrangement
+     * @param seatSelection the seating arrangement
+     * @return the layout as a string.
+     */
     public String getSeatingLayout(byte seatSelection)
     {
         assert  seatSelection == ALLSEATS || seatSelection == ECONOMYCLASS || seatSelection == FIRSTCLASS;
         if (seatSelection == ALLSEATS)
         {
-            String layout = "    A  B  C  D  E  F\n";
-            for (int i = 0; i < FirstClassSeating.length; i++) {
+            StringBuilder layout = new StringBuilder();
+            for (int i = 0; i < FirstClassSeating.length; i++)
+            {
                 if (i + 1 < 10) {
-                    layout += i + 1 + "     " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
+                    layout.append(i + 1).append("     ").append(Arrays.deepToString(FirstClassSeating[i])).append("\n");
                 } else {
-                    layout += i + 1 + "    " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
+                    layout.append(i + 1).append("    ").append(Arrays.deepToString(FirstClassSeating[i])).append("\n");
                 }
             }
-            for (int i = 0; i < EconomyClassSeating.length; i++) {
-                if (i + 1 < 10) {
-                    layout += 5 + i + "  " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+            for (int i = 0; i < EconomyClassSeating.length; i++)
+            {
+                if (i + 1 < 5) {
+                    layout.append(6 + i).append("  ").append(Arrays.deepToString(EconomyClassSeating[i])).append("\n");
                 } else {
-                    layout += 5 + i + " " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+                    layout.append(6 + i).append(" ").append(Arrays.deepToString(EconomyClassSeating[i])).append("\n");
                 }
             }
-            return layout;
+            return layout.toString();
         }
         else if (seatSelection == ECONOMYCLASS)
         {
-            String layout = "     A    B   C   D   E   F\n";
+            StringBuilder layout = new StringBuilder("     A    B   C   D   E   F\n");
             for (int i = 0; i < EconomyClassSeating.length; i++)
             {
                 if (i + 1 < 10)
                 {
-                    layout += i + 1 + "   " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+                    layout.append(i + 1).append("   ").append(Arrays.deepToString(EconomyClassSeating[i])).append("\n");
                 }
                 else
                 {
-                    layout += i + 1 + " " + Arrays.deepToString(EconomyClassSeating[i]) + "\n";
+                    layout.append(i + 1).append(" ").append(Arrays.deepToString(EconomyClassSeating[i])).append("\n");
                 }
             }
-            return layout;
+            return layout.toString();
         }
         else
         {
-            String layout = "        A   B   C   D   \n";
+            StringBuilder layout = new StringBuilder("        A   B   C   D   \n");
             for (int i = 0; i < FirstClassSeating.length; i++)
             {
                 if (i + 1 < 10)
                 {
-                    layout += i + 1 + "     " + Arrays.deepToString(FirstClassSeating[i]) +"\n";
+                    layout.append(i + 1).append("     ").append(Arrays.deepToString(FirstClassSeating[i])).append("\n");
                 }
                 else
                 {
-                    layout += i + 1 + "    " + Arrays.deepToString(FirstClassSeating[i]) + "\n";
+                    layout.append(i + 1).append("    ").append(Arrays.deepToString(FirstClassSeating[i])).append("\n");
                 }
             }
-            return layout;
+            return layout.toString();
         }
     }
 }

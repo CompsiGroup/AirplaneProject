@@ -1,6 +1,6 @@
-/*
- * Has the different seats on an airplane and can check if it is occupied
- * @author Gene
+/**
+ * Simulates an airplane seat.
+ * @author Gene, Dakota, Aidan
  * @version 12.20.2021
  */
 public class Seat
@@ -12,7 +12,7 @@ public class Seat
     public static final byte AISLE = 1;
     public static final byte MIDDLE = 2;
 
-    /*
+    /**
      * Creates a new seat that is or is not occupied and has a seat type.
      * @param isOccupied true if seat is occupied, false if it is not
      * @param seatType this seat's type - window, middle or aisle.
@@ -23,7 +23,7 @@ public class Seat
         this.seatType = seatType;
     }
 
-    /*
+    /**
      * Gets the seat type
      * @return seatType, the type of seat
      */
@@ -32,7 +32,7 @@ public class Seat
         return seatType;
     }
 
-    /*
+    /**
      * Checks if the seat is occupied
      * @return isOccupied, if the seat is occupied
      */
@@ -41,7 +41,7 @@ public class Seat
         return isOccupied;
     }
 
-    /*
+    /**
      * Sets the seat to occupied
      * @return occupy, The seat is set to occupied
      */
@@ -50,7 +50,7 @@ public class Seat
         isOccupied = true;
     }
 
-    /*
+    /**
      * Overrides toString to return if a seat is occupied and the type of seat it is.
      * @return The seat type and if it is occupied
      */

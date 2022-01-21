@@ -1,6 +1,11 @@
 import javax.swing.*;
 import java.util.HashMap;
 
+/**
+ * GUI for the Airplane project
+ * @author Gene, Dakota, Aidan
+ * @version 1.19.2022
+ */
 public class UserInterface
 {
     Airplane thisplane;
@@ -10,14 +15,24 @@ public class UserInterface
         thisplane = plane;
     }
 
+    /**
+     * Prompts the user for a seat
+     * @param seating Seating arrangement, Economy or First
+     * @return The Seat the user picked.
+     */
     public Seat askForSeat(byte seating)
     {
         String input = JOptionPane.showInputDialog(thisplane.getSeatingLayout(seating));
         input = input.strip();
-        if (!input.matches("\\w\\d"))
+        if (!input.matches("\\w\\d+"))
         {
+            if (input.equalsIgnoreCase("back"))
+            {
+                byte c = askForClass();
+                return askForSeat(c);
+            }
             JOptionPane.showMessageDialog(null,
-                    "Invalid input. Make sure to input <letter><row>");
+                    "Invalid input. Make sure to input <letter><row> or 'back' if you would like to change your class");
             return askForSeat(seating);
         }
         int spaceIndex = input.indexOf("\s");
@@ -45,18 +60,30 @@ public class UserInterface
         }
     }
 
+    /**
+     * Asks for the amount of people to be seated
+     * @return the amount o people to be seated.
+     */
     public int askForAmountOfPeople()
     {
         String input = JOptionPane.showInputDialog(
                 "Welcome to the plane\n"
                 +" how many people would you like to get seats for?");
+        input = input.strip();
         try
         {
             int amountOfPeople = Integer.parseInt(input);
-            if (amountOfPeople > thisplane.getAvailableSeats(Airplane.ALLSEATS)) {
+            if (amountOfPeople > thisplane.getAvailableSeats(Airplane.ALLSEATS))
+            {
                 JOptionPane.showMessageDialog(null,
                         "There arent enough seats to accomodate that many people. There are only "
                                 + thisplane.getAvailableSeats(Airplane.ALLSEATS) + " vacant seats");
+                return askForAmountOfPeople();
+            }
+            else if (amountOfPeople <= 0)
+            {
+                JOptionPane.showMessageDialog(null,
+                        "please input a positive integer");
                 return askForAmountOfPeople();
             }
             return amountOfPeople;
@@ -81,9 +108,14 @@ public class UserInterface
         JOptionPane.showMessageDialog(null,thisplane.getSeatingLayout(Airplane.ALLSEATS));
     }
 
+    /**
+     * Asks for the class the person wants to be seated in.
+     * @return the corresponding class.
+     */
     public byte askForClass()
     {
         String input = JOptionPane.showInputDialog("Which class would you like to be seated in?");
+        input = input.strip();
         if (input.equalsIgnoreCase("first"))
         {
             return Airplane.FIRSTCLASS;
@@ -100,13 +132,17 @@ public class UserInterface
     }
 
 
+    /**
+     * Displays when the chosen class has no vacant seats.
+     * @param seatingClassThatIsFull the chosen class
+     */
     public void displayClassFull(byte seatingClassThatIsFull)
     {
         HashMap<Byte, String> dict = new HashMap<Byte, String>();
 
         dict.put(Airplane.FIRSTCLASS, "First Class ");
         dict.put(Airplane.ECONOMYCLASS, "Economy Class ");
-
-        JOptionPane.showMessageDialog(null, dict.get(seatingClassThatIsFull) + "is full! pick again.");
+        dict.put(Airplane.ALLSEATS, "The plane");
+        JOptionPane.showMessageDialog(null, "There are no vacant seats in " + dict.get(seatingClassThatIsFull));
     }
 }
