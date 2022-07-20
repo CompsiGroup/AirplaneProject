@@ -35,7 +35,6 @@ public class UserInterface
                     "Invalid input. Make sure to input <letter><row> or 'back' if you would like to change your class");
             return askForSeat(seating);
         }
-        int spaceIndex = input.indexOf("\s");
         int row = Integer.parseInt(input.substring(1));
         String column = input.substring(0,1);
         try

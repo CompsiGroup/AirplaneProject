@@ -5,7 +5,7 @@ import java.io.IOException;
  * @author Gene, Aidan, Dakota
  * @version 12.20.2021
  */
-public class tester
+public class Tester
 {
     public static void main(String[] args) throws IOException {
         Airplane plane = new Airplane();
